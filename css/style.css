@@ -1,0 +1,28 @@
+/* add style! */
+.navigation {
+  padding-top: 1em;
+}
+.navigation ul > li {
+  display:inline;
+  list-style: : none;
+}
+
+.book {
+  margin:1em;
+  padding: 5%;
+  display: inline-block;
+}
+
+.book > ul > div > li {
+
+  list-style:none;
+  padding-left:0pt;
+}
+
+#bookwrapper {
+  padding-left:0pt;
+}
+.form {
+  margin-left:10%;
+  margin-right:10%;
+}
