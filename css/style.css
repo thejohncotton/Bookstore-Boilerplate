@@ -1,11 +1,11 @@
 /* add style! */
-.navigation {
+.nav {
   padding-top: 1em;
 }
-.navigation ul > li {
+/* .nav ul > li {
   display:inline;
   list-style: : none;
-}
+} */
 
 .book {
   margin:1em;
