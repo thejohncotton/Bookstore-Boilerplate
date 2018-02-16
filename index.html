@@ -22,76 +22,34 @@
   </div>
   <div class="content-area">
 
-    <h3 id="testEl"></h3>
+    <div class="books"></div>
 
-    <!-- Remove html for displaying books so js can do it!
-    <div class="book" id="book1">
-      <h3>Book 1</h3>
-      <ul id="bookwrapper"><div id="book-1-id"><li></li></div>
-        <div id="book-1-name"><li>name: <p></p></li></div>
-        <div id="book-1-author"><li>author: <p></p></li></div>
-        <div id="book-1-price"><li>price: <p></p></li></div>
-        <div id="book-1-picture"><li><img src="http://via.placeholder.com/125x185" alt="book-1 image"></li></div>
-      </ul>
-        <p>Selling Points:</p>
-        <div id="book-1-sellingpoints">
-          <ul>
-
-          </ul>
-        </div>
+    <div class="form-group form">
+      <h3>Add a Book to the Store!</h3>
+      <form action="#">
+    <!-- <form action="form-responses/new" method="POST"> -->
+        <input type="text" class="form-control" name="title" placeholder="Book Title" autofocus></br>
+        <input type="text" class="form-control" name="author" placeholder="Author"></br>
+        <input type="number" class="form-control" name="price" placeholder="$9.99"></br>
+        <input type="text" class="form-control" name="image-url" placeholder="http://via.placeholder.com/125x185"></br>
+        <label> Selling Points:</label></br>
+        <input type="text" class="form-control" name="selling-point-1" placeholder="It's a great value"></br>
+        <input type="text" class="form-control" name="selling-point-2" placeholder="It's a great read"></br>
+        <input type="text" class="form-control" name="selling-point-3" placeholder="It's a cool author!"></br>
+        <input type="submit" class="btn btn-success"value="Add this book to the store" >
+      </form>
     </div>
-    <div class="book" id="book2">
-          <h3>Book 2</h3>
-          <ul id="bookwrapper">
-            <div id="book-2-id"><li></li></div>
-            <div id="book-2-name"><li>name</li></div>
-            <div id="book-2-author"><li>author</li></div>
-            <div id="book-2-price"><li>price</li></div>
-            <div id="book-2-picture"><li><img src="http://via.placeholder.com/125x185" alt="book-2 image"></li></div>
-        </ul>
-      <p>Selling Points:</p>
-        <div id="book-2-selling-points"> <ul><li>a list of selling points</li></ul></div>
-  </div>
-  <div class="book" id="book3">
-        <h3>Book 3</h3>
-        <ul id="bookwrapper">
-          <div id="id"><li></li></div>
-          <div id="book-3-name"><li>name</li></div>
-          <div id="book-3-author"><li>author</li></div>
-          <div id="book-3-price"><li>price</li></div>
-          <div id="book-3-picture"><li><img src="http://via.placeholder.com/125x185" alt="book-3 image"></li></div>
-      </ul>
-    <p>Selling Points:</p>
-      <div id="book-3-selling-points"> <ul><li>a list of selling points</li></ul></div>
-</div>
--->
 
-  <div class="form-group form">
-    <h3>Add a Book to the Store!</h3>
-    <form action="#">
-  <!-- <form action="form-responses/new" method="POST"> -->
-      <input type="text" class="form-control" name="title" placeholder="Book Title" autofocus></br>
-      <input type="text" class="form-control"name="author" placeholder="Author"></br>
-      <input type="number" class="form-control"name="price" placeholder="$9.99"></br>
-      <input type="text" class="form-control"name="image-url" placeholder="http://via.placeholder.com/125x185"></br>
-      <label> Selling Points:</label></br>
-      <input type="text" class="form-control" name="selling-point-1" placeholder="It's a great value"></br>
-      <input type="text" class="form-control" name="selling-point-2" placeholder="It's a great read"></br>
-      <input type="text" class="form-control" name="selling-point-3" placeholder="It's a cool author!"></br>
-      <input type="submit" class="btn btn-success"value="Add this book to the store" >
-    </form>
-  </div>
-
-    <!-- end content area -->
+  <!-- end content area -->
   </div>
 
   <!-- in file jQuery -->
   <script></script>
   <!-- custom scripts -->
-<script src="js/bookstore.js"></script>
+  <script src="js/bookstore.js"></script>
   <!--link scripts for bootstrap and jquery  -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
