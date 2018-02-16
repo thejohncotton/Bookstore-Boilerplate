@@ -6,7 +6,10 @@
   display:inline;
   list-style: : none;
 }
-
+img {
+  height: 300px;
+  width: 200px;
+}
 .book {
   margin:1em;
   padding: 5%;
