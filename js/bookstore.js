@@ -2,7 +2,7 @@ var book1 = {
     "id": 1,
     "name": "Lasagna: A Retrospective",
     "author": "Garfield",
-    "pictureUrl": "http://graphics8.nytimes.com/images/2015/10/15/dining/15RECIPE20DIN/15RECIPE20DIN-articleLarge.jpg",
+    "pictureUrl": "http://moziru.com/images/hut-clipart-windoor-10.png",
     "price": 24,
     "sellingPoints": [
         "Lasagna is delicious.",
