@@ -12,7 +12,7 @@ h3 {
   font-style: Verdana;
   font-weight: bolder;
   font-size: 30px,
-  
+
 }
 
 p {
@@ -33,8 +33,10 @@ p {
 }
 
 .book > ul > div > #book-picture {
-  /* box-shadow: 5px 5px 5px grey; */
+ /* box-shadow: 5px 5px 5px grey; */
+/* position: relative; */
 }
+
 
 #bookwrapper {
   padding-left:0pt;
