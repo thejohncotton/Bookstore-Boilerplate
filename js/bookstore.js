@@ -53,14 +53,15 @@ while (i < book2.sellingPoints.length) {
 
 var book3 = {
   "id": 3,
-  "name": "'University Of Success'",
-  "author": "OG Mandino",
-  "pictureUrl": "https://images-na.ssl-images-amazon.com/images/I/51YhKdU6haL._SX316_BO1,204,203,200_.jpg",
-  "price":15.99,
+  "name": "'Mama Peaches and Me: Wit and Wisdom for Worn-Out Caregivers'",
+  "author": "Christopher Chaney",
+  "pictureUrl": "https://images-na.ssl-images-amazon.com/images/I/51iwgMRBj5L._SX331_BO1,204,203,200_.jpg",
+  "price":14.99,
   "sellingPoints": [
-"Dean of this unique University of Success is Og Mandino, the most acclaimed self-help writer of this generation.",
-"Former president of Success Unlimited magazine, Mandino was the first recipient of the Napoleon Hill Gold Medal for literary achievement.",
-"Each powerful lesson will bring you closer to your life’s goals."
+    "Voted as one of the best 8 caregiving books of 2017.",
+"Volume two of the award-winning Mama Peaches and Me caregiving series.",
+"Books offers tips, suggestions, and advice from author's own personal caregiving experiences."
+
   ]
 }
 $('#book-3-id li p').text(book3.id)
