@@ -91,6 +91,4 @@ $( "form" ).on( "submit", ( event ) => {
     bookInfo.push( formObject ); // Adding book to object array
     appendToPage( formObject ); // Adding book info to the webpage
     $('form')[0].reset(); // Resetting form
-console.log(formObject);
-console.log(bookInfo);
 });
