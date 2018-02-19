@@ -44,21 +44,22 @@ var appendToPage = (book) => {
 //       </ul>
 //     </div>
 // </div>
-    $("#bookList").append('<div class="book" id="book"' + book.id + '>');
+    $("#bookList").append('<a href="#book' + book.id + '">'); // Hyper link jump to a book
+    $("#bookList").append('<div class="book" id="book' + book.id + '"></a>');
     $("#bookList").append('<h3>Book ' + book.id + ':</h3>');
-    $("#bookList").append('<ul id="bookwrapper">');
-    $("#bookList").append('<div id="book-id"><li>ID: ' +
-                           book.id + '</li></div>');
-    $("#bookList").append('<div id="book-name"><li>Name: ' +
+    $("#bookList").append('<ul class="bookwrapper">');
+    $("#bookList").append('<div class="book-id"><li>ID: ' +
+                         book.id + '</li></div>');
+    $("#bookList").append('<div class="book-name"><li>Title: ' +
                            book.title + '</li></div>');
-    $("#bookList").append('<div id="book-author"><li>Author: ' +
+    $("#bookList").append('<div class="book-author"><li>Author: ' +
                            book.author + '</li></div>');
-    $("#bookList").append('<div id="book-price"><li>Price: ' +
+    $("#bookList").append('<div class="book-price"><li>Price: ' +
                            book.price + '</li></div>');
-    $("#bookList").append('<div id="book-picture"><li><img src="' +
+    $("#bookList").append('<div class="book-picture"><li><img src="' +
                            book.imageUrl + '" alt="Book Image"></li></div>');
     $("#bookList").append('</ul><p>Selling Points: </p>');
-    $("#bookList").append('<div id="book-sellingPoints"><ul>');
+    $("#bookList").append('<div class="book-sellingpoints"><ul>');
       // loop through array to get selling points.
      var sellingPtsIndex = 0;
      while (sellingPtsIndex < book.sellingPoints.length) {
@@ -87,8 +88,9 @@ $( "form" ).on( "submit", ( event ) => {
             formObject[ field.name ] = field.value;
         }
     } );
-
     bookInfo.push( formObject ); // Adding book to object array
     appendToPage( formObject ); // Adding book info to the webpage
     $('form')[0].reset(); // Resetting form
+console.log(formObject);
+console.log(bookInfo);
 });

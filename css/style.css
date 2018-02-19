@@ -2,10 +2,22 @@
 .navigation {
   padding-top: 1em;
 }
-
 .navigation ul > li {
   display:inline;
   list-style: : none;
+}
+
+h3 {
+  text-decoration: underline;
+  font-style: Verdana;
+  font-weight: bolder;
+  font-size: 30px,
+
+}
+
+p {
+  font-weight: bold;
+  font-style
 }
 
 .book {
@@ -14,10 +26,17 @@
   display: inline-block;
 }
 
-.book > ul > div > li {
+.book > ul  {
   list-style:none;
   padding-left:0pt;
+  font-style: Times;
 }
+
+.book > ul > div > #book-picture {
+ /* box-shadow: 5px 5px 5px grey; */
+/* position: relative; */
+}
+
 
 #bookwrapper {
   padding-left:0pt;
