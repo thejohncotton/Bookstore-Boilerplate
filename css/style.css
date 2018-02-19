@@ -19,6 +19,11 @@
   padding-left:0pt;
 }
 
+.book ul {
+  list-style: none;
+  padding-left: 0pt;
+}
+
 #bookwrapper {
   padding-left:0pt;
 }
@@ -26,3 +31,33 @@
   margin-left:10%;
   margin-right:10%;
 }
+
+
+.form-group.form {
+  padding-bottom: 50px;
+  margin-bottom: 50px;
+}
+.book-bg {
+  /* position: relative; */
+  /* box-sizing: border-box;
+  width: 100%;
+  height: auto; */
+  background-size: 100% 100%;
+  /* position: fixed; */
+  /* background-image: url("https://lostandtaken.com/wp-content/uploads/edd/2016/02/tan-stained-paper-texture-7.jpg"); */
+  background-image: url("https://thumbs.dreamstime.com/b/interior-backdrop-wooden-floor-brick-wall-spotlight-29890786.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  text-align: center;
+  align-content: center;
+
+}
+
+/* .book-bg2 {
+  background-size: 100%;
+  background-image: url("http://moziru.com/images/hut-clipart-windoor-10.png");
+  background-repeat: no-repeat;
+  text-align: center;
+
+} */
+
