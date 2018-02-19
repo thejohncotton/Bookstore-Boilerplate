@@ -93,8 +93,13 @@ var book2 = {
     "id": 2,
     "name": "Lasagna: A Retrospective",
     "author": "Garfield",
+
+    "pictureUrl": "http://graphics8.nytimes.com/images/2015/10/15/dining/15RECIPE20DIN/15RECIPE20DIN-articleLarge.jpg",
+    "price": 24.00,
+
     "pictureUrl": "/css/photos/windowElastic.png",
     "price": 20,
+
     "sellingPoints": [
         "Lasagna is delicious.",
         "The essential guide to Italian casseroles of all types.",
