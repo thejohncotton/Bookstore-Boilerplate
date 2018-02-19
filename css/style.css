@@ -32,6 +32,11 @@
   margin-right:10%;
 }
 
+
+.form-group.form {
+  padding-bottom: 50px;
+  margin-bottom: 50px;
+}
 .book-bg {
   /* position: relative; */
   /* box-sizing: border-box;
@@ -55,3 +60,4 @@
   text-align: center;
 
 } */
+
