@@ -1,2 +1,2 @@
 # Bookstore-Boilerplate
-An example page, for single page web app with bootstrap and jQuery.
+http://bookstoreproject.netlify.com/
