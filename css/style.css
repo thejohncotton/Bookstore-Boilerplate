@@ -53,10 +53,25 @@
 
 }
 
-/* .book-bg2 {
+.book-bg2 {
   background-size: 100%;
   background-image: url("http://moziru.com/images/hut-clipart-windoor-10.png");
   background-repeat: no-repeat;
   text-align: center;
 
-} */
+}
+
+* body {
+  font-weight: bold;
+  color: rgb(23, 189, 120); 
+}
+
+.bookCard {
+    margin: 30px;
+    padding: 20px 40px 40px;
+    max-width: 500px;
+    text-align: center;
+    background:black;
+    border-bottom: 4px solid #ccc;
+    border-radius: 6px;
+}
