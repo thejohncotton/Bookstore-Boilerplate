@@ -1,4 +1,4 @@
-var prodInfo = {
+var prodInfo = { // Object of product arrays
   "books":  [ { // Array of books with basic object information
               "id": 0,
               "title": "",
@@ -23,37 +23,29 @@ var prodInfo = {
                   "imageUrl": "",
                   "sellingPoints": ["","",""]
                 } ],
-} // Object containing three arrays: books, audio books and music
+}
 
-
-var appendToPage = (prod, type) => {
-  switch (type) { // Creating single object for code below based on type
-    case music:       let obj = prod.music; break;
-    case books:       let obj = prod.books; break;
-    case audioBooks:  let obj = prod.audioBooks; break;
-    default:          console.log('Error in type selection for appendToPage.')
-  }
-
+var appendToPage = (prod) => {
   // For the HTML, book is the original product.
-  $("#bookList").append('<a href="#book' + obj.id + '">'); // Hyper link jump to a book
-  $("#bookList").append('<div class="book" id="book' + obj.id + '"></a>');
-  $("#bookList").append('<h3>Book ' + obj.id + ':</h3>');
+  $("#bookList").append('<a href="#book' + prod.id + '">'); // Hyper link jump to a book
+  $("#bookList").append('<div class="book" id="book' + prod.id + '"></a>');
+  $("#bookList").append('<h3>Book ' + prod.id + ':</h3>');
   $("#bookList").append('<ul class="bookwrapper">');
   $("#bookList").append('<div class="book-id"><li>ID: ' +
-                        obj.id + '</li></div>');
+                        prod.id + '</li></div>');
   $("#bookList").append('<div class="book-name"><li>Title: ' +
-                        obj.title + '</li></div>');
+                        prod.title + '</li></div>');
   $("#bookList").append('<div class="book-author"><li>Author: ' +
-                        obj.author + '</li></div>');
+                        prod.author + '</li></div>');
   $("#bookList").append('<div class="book-price"><li>Price: ' +
-                        obj.price + '</li></div>');
+                        prod.price + '</li></div>');
   $("#bookList").append('<div class="book-picture"><li><img src="' +
-                        obj.imageUrl + '" alt="Book Image"></li></div>');
+                        prod.imageUrl + '" alt="Book Image"></li></div>');
   $("#bookList").append('</ul><p>Selling Points: </p>');
   $("#bookList").append('<div class="book-sellingpoints">');
   $("#bookList").append('<ul>');
   // Loop through array to get selling points.
-  obj.sellingpoints.forEach ( function(sellingPoint) {
+  prod.sellingpoints.forEach ( function(sellingPoint) {
     $("#bookList").append('<li>' + sellingPoint + '</li>');
   } );
   $("#bookList").append('</ul></div></div>');
@@ -67,26 +59,46 @@ var appendToJSON = () => {
   // localStorage.setItem ( 'bookstore.json', bookJSON );
 }
 
+var selectProdType = (type) => {
+  switch (type) { // Creating single object for code based on type
+    case 'music':       return prodInfo.music; break;
+    case 'book':        return prodInfo.books; break;
+    case 'audioBook':   return prodInfo.audioBooks; break;
+    default:          console.log('Error in type selection for appendToPage.');
+  }
+  return {};
+}
+
 $( "form" ).on( "submit", ( event ) => {
     var data = $( event.target ).serializeArray();
     var formObject = {};
-
+    let prodObj = NULL;
+console.log (data);
     event.preventDefault();
 
-    let type =
-
-    formObject.id = bookInfo.length;
-    formObject.sellingPoints = [];
-
-    data.forEach( ( field ) => {
-        if( field.name === "sP-1" || field.name === "sP-2" || field.name === "sP-3"){
-            formObject.sellingPoints.push( field.value )
-        } else {
-            formObject[ field.name ] = field.value;
-        }
+    data.forEach ((field) => {
+      if ( field.name === "optRadio") {
+        prodObj = selectProdType (field.value);
+      }
     } );
-    prodInfo.push( formObject ); // Adding book to object array
-    appendToPage( formObject, type ); // Adding book info to the webpage
-    appendToJSON( ); // Adding book to JSON file
-    $('form')[0].reset(); // Resetting form
+console.log (prodObj);
+    if (prodObj !== NULL) {
+console.log ("verified not equal to NULL");
+      formObject.id = prodObj.length;
+      formObject.sellingPoints = [];
+
+      data.forEach( ( field ) => {
+          if( field.name === "sP-1" || field.name === "sP-2" || field.name === "sP-3"){
+              formObject.sellingPoints.push( field.value )
+          } else if (field.name === optRadio) {
+            // do nothing .. skip this field here
+          } else {
+              formObject[ field.name ] = field.value;
+          }
+      } );
+      prodObj.push( formObject ); // Adding book to type specific array
+      appendToPage( formObject ); // Adding book info to the webpage
+      // appendToJSON( ); // Adding book to JSON file
+      // $('form')[0].reset(); // Resetting form
+    }
 });
