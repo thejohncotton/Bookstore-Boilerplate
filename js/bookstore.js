@@ -1,3 +1,4 @@
+// Array position 0 is format of data (empty values)
 var prodInfo = { // Object of product arrays
   "books":  [ { // Array of books with basic object information
               "id": 0,
@@ -26,7 +27,7 @@ var prodInfo = { // Object of product arrays
 }
 
 var appendToPage = (prod) => {
-  // For the HTML, book is the original product.
+  // For the HTML, book is the original product and used for any product type
   $("#bookList").append('<a href="#book' + prod.id + '">'); // Hyper link jump to a book
   $("#bookList").append('<div class="book" id="book' + prod.id + '"></a>');
   $("#bookList").append('<h3>Book ' + prod.id + ':</h3>');
@@ -45,52 +46,58 @@ var appendToPage = (prod) => {
   $("#bookList").append('<div class="book-sellingpoints">');
   $("#bookList").append('<ul>');
   // Loop through array to get selling points.
-  prod.sellingpoints.forEach ( function(sellingPoint) {
-    $("#bookList").append('<li>' + sellingPoint + '</li>');
+  prod.sellingPoints.forEach ( function ( sPoint ) {
+    $("#bookList").append('<li>' + sPoint + '</li>');
   } );
   $("#bookList").append('</ul></div></div>');
   $("#bookList").append('<br>');
 }
 
-var appendToJSON = () => {
-  // Append to JSON file the current bookInfo object
-  var bookJSON = JSON.stringify(bookInfo);
+// var appendToJSON = () => {
+//   // Append to JSON file the current bookInfo object
+//   var bookJSON = JSON.stringify(bookInfo);
+//
+//   // localStorage.setItem ( 'bookstore.json', bookJSON );
+// }
 
-  // localStorage.setItem ( 'bookstore.json', bookJSON );
-}
+// Creating composite address of array based on selected radio button
+var selectProdType = (dataObj) => {
+  let objArray = []; // Empty array of length 0
 
-var selectProdType = (type) => {
-  switch (type) { // Creating single object for code based on type
-    case 'music':       return prodInfo.music; break;
-    case 'book':        return prodInfo.books; break;
-    case 'audioBook':   return prodInfo.audioBooks; break;
-    default:          console.log('Error in type selection for appendToPage.');
-  }
-  return {};
-}
+  dataObj.forEach ((field) => {
+    if ( field.name === "optRadio") {
+      switch (field.id) { // Copy of Array addresses of length 1+
+        case 'music-radio':       objArray = prodInfo.music; break;
+        case 'book-radio':        objArray = prodInfo.books; break;
+        case 'audioBook-radio':   objArray = prodInfo.audioBooks; break;
+        default:  console.log('ERROR: Invalid type selection for selectProdType().');
+      }
+console.log(field.value + "is selected");
+    }
+  } )
+  return objArray;
+};
 
+// Clicking Submit starts it all off :D
 $( "form" ).on( "submit", ( event ) => {
     var data = $( event.target ).serializeArray();
     var formObject = {};
-    let prodObj = NULL;
+    let prodObj = [];
 console.log (data);
+
     event.preventDefault();
 
-    data.forEach ((field) => {
-      if ( field.name === "optRadio") {
-        prodObj = selectProdType (field.value);
-      }
-    } );
-console.log (prodObj);
-    if (prodObj !== NULL) {
-console.log ("verified not equal to NULL");
+    prodObj = selectProdType (data);
+
+    if (prodObj.length !== 0) {
+console.log ("Verified not empty array returned from selectProdType.");
       formObject.id = prodObj.length;
       formObject.sellingPoints = [];
 
-      data.forEach( ( field ) => {
+      data.forEach (( field ) => {
           if( field.name === "sP-1" || field.name === "sP-2" || field.name === "sP-3"){
               formObject.sellingPoints.push( field.value )
-          } else if (field.name === optRadio) {
+          } else if (field.name === "optRadio") {
             // do nothing .. skip this field here
           } else {
               formObject[ field.name ] = field.value;
@@ -100,5 +107,9 @@ console.log ("verified not equal to NULL");
       appendToPage( formObject ); // Adding book info to the webpage
       // appendToJSON( ); // Adding book to JSON file
       // $('form')[0].reset(); // Resetting form
+    } else {
+      console.log ("ERROR: prodObj has length 0 (ie. optRadio value not setting correctly.)");
     }
+console.log(prodObj);
+console.log(prodInfo);
 });
