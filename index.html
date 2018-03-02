@@ -43,7 +43,7 @@
 
   <div class="content-area">
 
-    <div class="books"></div>
+    <div class="products"></div>
 
 <!-- Commented out book content below because javascript generates it -->
 
@@ -131,18 +131,20 @@
 
 
     <div class="form-group form">
-      <h3>Add a Book to the Store!</h3>
+      <h3>Add a Product to the Store!</h3>
       <form action="#">
     <!-- <form action="form-responses/new" method="POST"> -->
-        <input type="text" class="form-control" name="title" placeholder="Book Title" autofocus></br>
-        <input type="text" class="form-control" name="author" placeholder="Author"></br>
+        <input type="radio" name="type" value="books"> Book</br>
+        <input type="radio" name="type" value="music"> Album</br>
+        <input type="text" class="form-control" name="title" placeholder="Product Title" autofocus></br>
+        <input type="text" class="form-control" name="creator" placeholder="Author or Artist"></br>
         <input type="number" class="form-control" name="price" placeholder="$9.99"></br>
         <input type="text" class="form-control" name="image-url" placeholder="http://via.placeholder.com/125x185"></br>
         <label> Selling Points:</label></br>
         <input type="text" class="form-control" name="selling-point-1" placeholder="It's a great value"></br>
-        <input type="text" class="form-control" name="selling-point-2" placeholder="It's a great read"></br>
-        <input type="text" class="form-control" name="selling-point-3" placeholder="It's a cool author!"></br>
-        <input type="submit" class="btn btn-success"value="Add this book to the store" >
+        <input type="text" class="form-control" name="selling-point-2" placeholder="It's a great read/listen"></br>
+        <input type="text" class="form-control" name="selling-point-3" placeholder="It's a cool author/artist!"></br>
+        <input type="submit" class="btn btn-success"value="Add this product to the store" >
       </form>
     </div>
 
