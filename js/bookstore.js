@@ -72,7 +72,6 @@ var selectProdType = (dataObj) => {
         case 'audioBook-radio':   objArray = prodInfo.audioBooks; break;
         default:  console.log('ERROR: Invalid type selection for selectProdType().');
       }
-console.log(field.value + "is selected");
     }
   } )
   return objArray;
@@ -83,14 +82,12 @@ $( "form" ).on( "submit", ( event ) => {
     var data = $( event.target ).serializeArray();
     var formObject = {};
     let prodObj = [];
-console.log (data);
 
     event.preventDefault();
 
     prodObj = selectProdType (data);
 
     if (prodObj.length !== 0) {
-console.log ("Verified not empty array returned from selectProdType.");
       formObject.id = prodObj.length;
       formObject.sellingPoints = [];
 
@@ -110,6 +107,4 @@ console.log ("Verified not empty array returned from selectProdType.");
     } else {
       console.log ("ERROR: prodObj has length 0 (ie. optRadio value not setting correctly.)");
     }
-console.log(prodObj);
-console.log(prodInfo);
 });
