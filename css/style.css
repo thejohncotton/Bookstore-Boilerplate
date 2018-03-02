@@ -7,26 +7,39 @@
   list-style: : none;
 } */
 
-.book {
+/* update .book class to .books class and .music class, based on the updated js */
+.books, .music {
   margin:1em;
   padding: 5%;
   display: inline-block;
 }
 
-.book > ul > div > li {
+.books > ul > div > li, .music > ul > div > li {
 
   list-style:none;
   padding-left:0pt;
 }
 
-.book ul {
+.books ul, .music ul {
   list-style: none;
   padding-left: 0pt;
 }
 
-#bookwrapper {
+/* consistently size album images */
+.music img {
+  height: 350px;
+}
+
+/* not sure if we need this rule because we have .product-wrapper rule below */
+#bookwrapper, #musicwrapper {
   padding-left:0pt;
 }
+
+/* .product-wrapper may replace #bookwrapper & #musicwrapper?  */
+.product-wrapper {
+  padding-left:0;
+}
+
 .form {
   margin-left:10%;
   margin-right:10%;
@@ -63,10 +76,11 @@
 
 * body {
   font-weight: bold;
-  color: rgb(23, 189, 120); 
+  color: rgb(23, 189, 120);
 }
 
-.bookCard {
+/* update .bookCard to .booksCard and .musicCard to reflect updated js */
+.booksCard, .musicCard {
     margin: 30px;
     padding: 20px 40px 40px;
     max-width: 500px;
@@ -74,4 +88,15 @@
     background:black;
     border-bottom: 4px solid #ccc;
     border-radius: 6px;
+}
+
+/* style the product type radio buttons */
+#product-type-radio-group {
+  display: block;
+  text-align: left;
+}
+
+#product-type-radio-group label {
+  display: block;
+  text-align: left;
 }

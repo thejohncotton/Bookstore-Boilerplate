@@ -93,12 +93,12 @@ var products = {
       "id": 0,
       "title": "In Return",
       "creator": "Odesza",
-      "pictureUrl": "http://via.placeholder.com/125x185",
-      "price": 18,
+      "pictureUrl": "https://f4.bcbits.com/img/a3774066618_16.jpg",
+      "price": 11.99,
       "sellingPoints": [
-          "You'll love it!",
-          "Cool album art",
-          "Award winning"
+          "Debuted at number 1 on <i>Billboard</i>'s Top Dance/Electronic Albums",
+          "Featuring <i>Zyra</i> and <i>Shy Girls</i>",
+          '<i>"How two young producers sat down and came up with this really kinda boggles the mind."</i>  --Mike Waite, <i>Earmilk</i>'
       ]
     },
     {
@@ -106,12 +106,12 @@ var products = {
       "id": 1,
       "title": "Art Angels",
       "creator": "Grimes",
-      "pictureUrl": "http://via.placeholder.com/125x185",
-      "price": 15,
+      "pictureUrl": "https://media.pitchfork.com/photos/5929b220c0084474cd0c1f04/1:1/w_320/59ef246f.jpg",
+      "price": 9.99,
       "sellingPoints": [
-          "Get your Grime on!",
-          "Grime Time!",
-          "Catchy"
+          "Featuring <i>Aristophanes</i> and Janelle Monáe",
+          '<i>"impossible to resist"  --DIY</i>\'s El Hunt',
+          "Critically acclaimed"
       ]
     }
   ] // end "music"
@@ -120,15 +120,15 @@ var products = {
 // Function to append a book & its info to the page
 function appendToPage(product) {
   var contentId = product.type + product.id;
-  $('.products').append("<div class='" + product.type + "' id='" + contentId + "'></div>");
+  $('.products').append("<div class='" + product.type + "' " + product.type + "Card' id='" + contentId + "'></div>");
   $("#" + contentId).append("<h3>" + product.title + "</h3>")
   $("#" + contentId).append("<ul class='product-wrapper'></ul>");
   if (product.type === "books") {
-    $("#" + contentId + " .product-wrapper").append("<div id='" + contentId + "-author'><li>author: <p>" + product.creator + "</p></li></div");
+    $("#" + contentId + " .product-wrapper").append("<div id='" + contentId + "-author'><li>by " + product.creator + "</li></div");
   } else {
-    $("#" + contentId + " .product-wrapper").append("<div id='" + contentId + "-artist'><li>artist: <p>" + product.creator + "</p></li></div");
+    $("#" + contentId + " .product-wrapper").append("<div id='" + contentId + "-artist'><li>by " + product.creator + "</li></div");
   }
-  $("#" + contentId + ' .product-wrapper').append("<div id='" + contentId + "-price'><li>price: <p>" + product.price + "</p></li></div");
+  $("#" + contentId + ' .product-wrapper').append("<div id='" + contentId + "-price'><li>$" + product.price + "</li></div");
   $("#" + contentId + ' .product-wrapper').append("<div id='" + contentId + "-picture'><li><img src='" + product.pictureUrl + "' alt='" + contentId + "-image'</li></div");
   $("#" + contentId).append("<p>Selling Points:</p><div id='" + contentId + "-sellingpoints'><ul></ul></div>");
 
@@ -190,8 +190,14 @@ function renderNewProduct(formObject){
 // Make the form work
 $('.form').on('submit', ( event ) => {
     event.preventDefault();
-    var formObject = parseProductForm(event.target);
-    renderNewProduct(formObject);
+
+    if($('input[name=type]:checked').length<=0) {
+     alert('Please select a product type ("Book" or "Album"), and then resubmit your addition (by clicking "Add this product to the store" again).');
+    } else {
+      var formObject = parseProductForm(event.target);
+      renderNewProduct(formObject);
+    }
+
 });
 
 

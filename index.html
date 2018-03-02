@@ -18,7 +18,7 @@
 <body>
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <!-- Brand/logo -->
-    <a class="navbar-brand" href="#">Book Store</a>
+    <a class="navbar-brand" href="#">Books & Music Store</a>
 
     <!-- Links -->
     <!-- <ul class="navbar-nav">
@@ -36,14 +36,14 @@
   <div class="navigation">
     <ul>
       <li><a href="#" class="btn large btn-success">Home</a></li>
-      <li><a href="#" class="btn large btn-success">Books</a></li>
-      <li><a href="#" class="btn large btn-success">Submit</a></li>
+      <li><a href="#store-products" class="btn large btn-success">Products</a></li>
+      <li><a href="#add-product-form" class="btn large btn-success">Submit</a></li>
     </ul>
   </nav>
 
   <div class="content-area">
 
-    <div class="products"></div>
+    <div id="store-products" class="products"></div>
 
 <!-- Commented out book content below because javascript generates it -->
 
@@ -130,12 +130,18 @@
 </div> -->
 
 
-    <div class="form-group form">
+    <div id="add-product-form" class="form-group form">
       <h3>Add a Product to the Store!</h3>
       <form action="#">
     <!-- <form action="form-responses/new" method="POST"> -->
-        <input type="radio" name="type" value="books"> Book</br>
-        <input type="radio" name="type" value="music"> Album</br>
+        <label id='product-type-radio-group'>Product Type:
+          <label>
+            <input type="radio" name="type" value="books"> Book</input>
+          </label>
+          <input type="radio" name="type" value="music"> Album</input>
+        </label>
+
+
         <input type="text" class="form-control" name="title" placeholder="Product Title" autofocus></br>
         <input type="text" class="form-control" name="creator" placeholder="Author or Artist"></br>
         <input type="number" class="form-control" name="price" placeholder="$9.99"></br>
