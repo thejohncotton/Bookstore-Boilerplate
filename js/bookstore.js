@@ -1,135 +1,201 @@
 // Create array of book objects
-var books = [
-  {
-    "id": 1,
+var products = {
+  "books": [
+    {
+      "type": "books",
+      "id": 0, // reset ids to start with zero for accurate looping and adding
 
-    "title": "An American Marriage",
-    "author": "Tayari Jones",
-    "pictureUrl": "/css/photos/windowAmerican.png",
+      "title": "An American Marriage",
+      "creator": "Tayari Jones",
+      "pictureUrl": "/css/photos/windowAmerican.png",
 
-    "price": 24,
-    "sellingPoints": [
-        "Marriages are great.",
-        "The essential guide to Marriages of all types.",
-        "Real Couples's move in silence, like Lasagna. -Lil Me"
-    ]
-  },
-
-  {
-      "id": 2,
-      "title": "Elastic",
-      "author": "Leonard Mlodinov",
-
-      "pictureUrl": "/css/photos/windowElastic.png",
-      "price": 20,
-
-      "sellingPoints": [
-          "It's elastic",
-          "Elasticity",
-          "Elastic"
-      ]
-  },
-
- {
-    "id": 3,
-    "title": "I Am Malala",
-    "author": "Malala Yousafzai",
-    "pictureUrl": "/css/photos/windowMalala.png",
-    "price": 9.99,
-    "sellingPoints": [
-        "Malala la",
-        "Malala lala",
-        "Malala lalala"
-    ]
-  },
-
-{
-      "id": 4,
-      "title": "Recovery | Freedom from Our Addictions",
-      "author": "Russell Brand",
-      "pictureUrl": "/css/photos/WindowRussel.png",
       "price": 24,
       "sellingPoints": [
-          "Recover",
-          "Freedom",
-          "From Addictions"
+          "Marriages are great.",
+          "The essential guide to Marriages of all types.",
+          "Real Couples's move in silence, like Lasagna. -Lil Me"
       ]
-  },
-  {
-      "id": 5,
-      "title": "Thug Kitchen",
-      "author": "Matt Holloway, Michelle Davis, and Thug Kitchen, LLC",
-      "pictureUrl": "/css/photos/windowthug.png",
-      "price": 24,
-      "sellingPoints": [
-          "#1 New York Times Bestseller",
-          "Cool cover",
-          "Cookbook!"
-      ]
-  },
+    },
+
+    {
+        "type": "books",
+        "id": 1,
+        "title": "Elastic",
+        "creator": "Leonard Mlodinov",
+
+        "pictureUrl": "/css/photos/windowElastic.png",
+        "price": 20,
+
+        "sellingPoints": [
+            "It's elastic",
+            "Elasticity",
+            "Elastic"
+        ]
+    },
+
    {
-      "id": 6,
-      "title": "Women in Science",
-      "author": "Rachel Ignotofsky",
-      "pictureUrl": "/css/photos/windowWomen.png",
-      "price": 24,
+      "type": "books",
+      "id": 2,
+      "title": "I Am Malala",
+      "creator": "Malala Yousafzai",
+      "pictureUrl": "/css/photos/windowMalala.png",
+      "price": 9.99,
       "sellingPoints": [
-          "50 Fearless",
-          "Pioneers Who",
-          "Changed the World"
+          "Malala la",
+          "Malala lala",
+          "Malala lalala"
       ]
-  }
-]
+    },
+
+  {
+        "type": "books",
+        "id": 3,
+        "title": "Recovery | Freedom from Our Addictions",
+        "creator": "Russell Brand",
+        "pictureUrl": "/css/photos/WindowRussel.png",
+        "price": 24,
+        "sellingPoints": [
+            "Recover",
+            "Freedom",
+            "From Addictions"
+        ]
+    },
+    {
+        "type": "books",
+        "id": 4,
+        "title": "Thug Kitchen",
+        "creator": "Matt Holloway, Michelle Davis, and Thug Kitchen, LLC",
+        "pictureUrl": "/css/photos/windowthug.png",
+        "price": 24,
+        "sellingPoints": [
+            "#1 New York Times Bestseller",
+            "Cool cover",
+            "Cookbook!"
+        ]
+    },
+     {
+        "type": "books",
+        "id": 5,
+        "title": "Women in Science",
+        "creator": "Rachel Ignotofsky",
+        "pictureUrl": "/css/photos/windowWomen.png",
+        "price": 24,
+        "sellingPoints": [
+            "50 Fearless",
+            "Pioneers Who",
+            "Changed the World"
+        ]
+    }
+  ], // end "books"
+  "music": [
+    {
+      "type": "music",
+      "id": 0,
+      "title": "In Return",
+      "creator": "Odesza",
+      "pictureUrl": "http://via.placeholder.com/125x185",
+      "price": 18,
+      "sellingPoints": [
+          "You'll love it!",
+          "Cool album art",
+          "Award winning"
+      ]
+    },
+    {
+      "type": "music",
+      "id": 1,
+      "title": "Art Angels",
+      "creator": "Grimes",
+      "pictureUrl": "http://via.placeholder.com/125x185",
+      "price": 15,
+      "sellingPoints": [
+          "Get your Grime on!",
+          "Grime Time!",
+          "Catchy"
+      ]
+    }
+  ] // end "music"
+} // end products object
 
 // Function to append a book & its info to the page
-var appendToPage = function(book) {
-  $('.books').append("<div class='book' id='book" + book.id + "'></div>");
-  $("#book" + book.id).append("<h3>" + book.title + "</h3>")
-  $("#book" + book.id).append("<ul class='bookwrapper'></ul>");
-  $("#book" + book.id + " .bookwrapper").append("<div id='book-" + book.id + "-author'><li>author: <p>" + book.author + "</p></li></div");
-  $("#book" + book.id + ' .bookwrapper').append("<div id='book-" + book.id + "-price'><li>price: <p>" + book.price + "</p></li></div");
-  $("#book" + book.id + ' .bookwrapper').append("<div id='book-" + book.id + "-picture'><li><img src='" + book.pictureUrl + "' alt='book-" + book.id + "-image'</li></div");
-  $("#book" + book.id).append("<p>Selling Points:</p><div id='book-" + book.id + "-sellingpoints'><ul></ul></div>");
-  var i = 0
-  while (i < book.sellingPoints.length) {
-    $("#book-" + book.id + "-sellingpoints ul").append('<li>' + book.sellingPoints[i] + '</li>');
-    i++;
+function appendToPage(product) {
+  var contentId = product.type + product.id;
+  $('.products').append("<div class='" + product.type + "' id='" + contentId + "'></div>");
+  $("#" + contentId).append("<h3>" + product.title + "</h3>")
+  $("#" + contentId).append("<ul class='product-wrapper'></ul>");
+  if (product.type === "books") {
+    $("#" + contentId + " .product-wrapper").append("<div id='" + contentId + "-author'><li>author: <p>" + product.creator + "</p></li></div");
+  } else {
+    $("#" + contentId + " .product-wrapper").append("<div id='" + contentId + "-artist'><li>artist: <p>" + product.creator + "</p></li></div");
   }
+  $("#" + contentId + ' .product-wrapper').append("<div id='" + contentId + "-price'><li>price: <p>" + product.price + "</p></li></div");
+  $("#" + contentId + ' .product-wrapper').append("<div id='" + contentId + "-picture'><li><img src='" + product.pictureUrl + "' alt='" + contentId + "-image'</li></div");
+  $("#" + contentId).append("<p>Selling Points:</p><div id='" + contentId + "-sellingpoints'><ul></ul></div>");
+
+  product.sellingPoints.forEach(function(point) {
+    $("#" + contentId + "-sellingpoints ul").append('<li>' + point + '</li>');
+  })
 }
 
-// Append each book to page
-for (var i = 0; i < books.length; i++) {
-  appendToPage(books[i]);
-}
+// Append each book to page - refactored below
+// products.forEach(function(product){
+//   appendToPage(product);
+// })
+
+// Append each book to page - refactored
+for ( var key in products ){ // key being "books" or "music"
+  products[key].forEach(function(product){
+    appendToPage(product); // re-renders each product in the array
+  });
+};
+
+// Function to create a new product from form
+function parseProductForm( form ){
+  var data = $(form).serializeArray();
+  var formObject = {};
+  var productArray; // create variable for "books" or "music" array
+
+  formObject.sellingPoints = [];
+  data.forEach( ( field ) => {
+      if( field.name.includes("selling-point") ){
+          formObject.sellingPoints.push( field.value )
+      }
+      else if( field.name === "image-url" ){
+          formObject.pictureUrl = field.value;
+      }
+      else {
+          formObject[ field.name ] = field.value;
+      }
+  } );
+
+  productArray = products[formObject.type]; // should be "books" or "music" array
+  formObject.id = productArray.length++; // set id to be one more than the length of "books" or "music"
+
+  return formObject;
+};
+
+// function to add new product from form to products and to page
+function renderNewProduct(formObject){
+    $('.products').empty(); // jQuery function to refresh the products div
+
+    products[formObject.type].push(formObject); // adds the new product to "books" or "music"
+    for ( var key in products ){ // key being "books" or "music"
+      products[key].forEach(function(product){
+        appendToPage(product); // re-renders each product in the array
+      });
+    };
+
+};
 
 // Make the form work
-$( "form" ).on( "submit", ( event ) => {
-        var data = $( event.target ).serializeArray();
-        var formObject = {};
+$('.form').on('submit', ( event ) => {
+    event.preventDefault();
+    var formObject = parseProductForm(event.target);
+    renderNewProduct(formObject);
+});
 
-        event.preventDefault();
 
-        formObject.id = books.length + 1;
-        formObject.sellingPoints = [];
-
-        data.forEach( ( field ) => {
-            if( field.name.includes("selling-point") ){
-                formObject.sellingPoints.push( field.value )
-            }
-            else if( field.name === "image-url" ){
-                formObject.pictureUrl = field.value;
-            }
-            else {
-                formObject[ field.name ] = field.value;
-            }
-        } );
-
-        books.push( formObject );
-
-        appendToPage( formObject );
-    });
-
-    // all code below commented out because books alread added to page above
+    // all code below commented out because books already added to page above
 
 // book 2 has been added to beginning of script, in var books
 // console.log("Book2");
