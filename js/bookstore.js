@@ -24,16 +24,23 @@ var prodInfo = { // Object of product arrays
                   "imageUrl": "",
                   "sellingPoints": ["","",""]
                 } ],
-}
+};
 
-var appendToPage = (prod) => {
+var prodListType = ["book", "music", "audiobook"];
+// audiobookList, bookList, musicList
+
+var appendToPage = (prod, type) => {
+// var appendToPage = (prod) => {
   // For the HTML, book is the original product and used for any product type
-  $("#bookList").append('<a href="#book' + prod.id + '">'); // Hyper link jump to a book
-  $("#bookList").append('<div class="book" id="book' + prod.id + '"></a>');
+  // $("#bookList").append('<a href="#book' + prod.id + '">'); // Hyper link jump to a book
+  // $("#bookList").append('<a href="#' + type + prod.id + '">'); // Hyper link jump to a book
+  // $("#bookList").append('<div class="book" id="book' + prod.id + '"></a>');
   $("#bookList").append('<h3>Book ' + prod.id + ':</h3>');
   $("#bookList").append('<ul class="bookwrapper">');
   $("#bookList").append('<div class="book-id"><li>ID: ' +
                         prod.id + '</li></div>');
+  // $("#bookList").append('<div class="book-type"><li>Type: ' +
+  //                       type + '</li></div>');
   $("#bookList").append('<div class="book-name"><li>Title: ' +
                         prod.title + '</li></div>');
   $("#bookList").append('<div class="book-author"><li>Author: ' +
@@ -53,42 +60,44 @@ var appendToPage = (prod) => {
   $("#bookList").append('<br>');
 }
 
-// var appendToJSON = () => {
-//   // Append to JSON file the current bookInfo object
-//   var bookJSON = JSON.stringify(bookInfo);
-//
-//   // localStorage.setItem ( 'bookstore.json', bookJSON );
-// }
-
 // Creating composite address of array based on selected radio button
 var selectProdType = (dataObj) => {
-  let objArray = []; // Empty array of length 0
+  let object = {
+    "array": []; // Empty array of length 0
+    "type": ""; // Empty string placeholder
+  };
 
   dataObj.forEach ((field) => {
     if ( field.name === "optRadio") {
-      switch (field.id) { // Copy of Array addresses of length 1+
-        case 'music-radio':       objArray = prodInfo.music; break;
-        case 'book-radio':        objArray = prodInfo.books; break;
-        case 'audioBook-radio':   objArray = prodInfo.audioBooks; break;
+      switch (field.value) { // Copy of Array addresses of length 1+
+        case 'music-radio':       object.array = prodInfo.music;
+                                  object.type = "Music";
+                                  break;
+        case 'book-radio':        object.array = prodInfo.books;
+                                  object.type = "Book";
+                                  break;
+        case 'audioBook-radio':   object.array = prodInfo.audioBooks;
+                                  object.type = "Audio Book";
+                                  break;
         default:  console.log('ERROR: Invalid type selection for selectProdType().');
       }
     }
   } )
-  return objArray;
+  return object;
 };
 
 // Clicking Submit starts it all off :D
 $( "form" ).on( "submit", ( event ) => {
     var data = $( event.target ).serializeArray();
     var formObject = {};
-    let prodObj = [];
+    let prodObj = {};
 
     event.preventDefault();
 
     prodObj = selectProdType (data);
 
-    if (prodObj.length !== 0) {
-      formObject.id = prodObj.length;
+    if (prodObj.array.length !== 0) {
+      formObject.id = prodObj.array.length;
       formObject.sellingPoints = [];
 
       data.forEach (( field ) => {
@@ -100,8 +109,9 @@ $( "form" ).on( "submit", ( event ) => {
               formObject[ field.name ] = field.value;
           }
       } );
-      prodObj.push( formObject ); // Adding book to type specific array
+      prodObj.array.push( formObject ); // Adding book to type specific array
       appendToPage( formObject ); // Adding book info to the webpage
+      // appendToPage( formObject, prodObj.type ); // Adding book info to the webpage
       // appendToJSON( ); // Adding book to JSON file
       // $('form')[0].reset(); // Resetting form
     } else {
