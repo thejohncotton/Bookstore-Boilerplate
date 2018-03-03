@@ -1,11 +1,4 @@
-/* add style! */
-.navigation {
-  padding-top: 1em;
-}
-.navigation ul > li {
-  display:inline;
-  list-style: : none;
-}
+/*The reference of book refers to all books*/
 
 h3 {
   text-decoration: underline;
@@ -20,27 +13,44 @@ p {
   font-style
 }
 
-.book {
-  margin:1em;
-  padding: 5%;
-  display: inline-block;
-}
 
-.book > ul  {
-  list-style:none;
+li {
+  list-style: none;
   padding-left:0pt;
   font-style: Times;
 }
 
-.book > ul > div > #book-picture {
- /* box-shadow: 5px 5px 5px grey; */
-/* position: relative; */
+img {
+box-shadow: 5px 5px 5px grey;
+position: relative;
+}
+
+#top-image {
+box-shadow: none;
+height: 500px;
+width: 100%;
+}
+
+.welcome {
+  text-align: center;
 }
 
 
-#bookwrapper {
-  padding-left:0pt;
+.book-author {
+font-family: Verdana
+
 }
+.book-name {
+  font-family: Verdana;
+}
+
+.book-price {
+  font-family: Verdana;
+}
+
+
+
+
 
 .form {
   margin-left:10%;
