@@ -16,7 +16,7 @@ var prodInfo = { // Object of product arrays
               "imageUrl": "",
               "sellingPoints": ["","",""]
             } ],
-  "audioBooks": [ { // Array of audio books with basic object information
+  "audiobooks": [ { // Array of audio books with basic object information
                   "id": 0,
                   "title": "",
                   "author": "",
@@ -24,87 +24,129 @@ var prodInfo = { // Object of product arrays
                   "imageUrl": "",
                   "sellingPoints": ["","",""]
                 } ],
-}
-
-var appendToPage = (prod) => {
-  // For the HTML, book is the original product and used for any product type
-  $("#bookList").append('<a href="#book' + prod.id + '">'); // Hyper link jump to a book
-  $("#bookList").append('<div class="book" id="book' + prod.id + '"></a>');
-  $("#bookList").append('<h3>Book ' + prod.id + ':</h3>');
-  $("#bookList").append('<ul class="bookwrapper">');
-  $("#bookList").append('<div class="book-id"><li>ID: ' +
-                        prod.id + '</li></div>');
-  $("#bookList").append('<div class="book-name"><li>Title: ' +
-                        prod.title + '</li></div>');
-  $("#bookList").append('<div class="book-author"><li>Author: ' +
-                        prod.author + '</li></div>');
-  $("#bookList").append('<div class="book-price"><li>Price: ' +
-                        prod.price + '</li></div>');
-  $("#bookList").append('<div class="book-picture"><li><img src="' +
-                        prod.imageUrl + '" alt="Book Image"></li></div>');
-  $("#bookList").append('</ul><p>Selling Points: </p>');
-  $("#bookList").append('<div class="book-sellingpoints">');
-  $("#bookList").append('<ul>');
-  // Loop through array to get selling points.
-  prod.sellingPoints.forEach ( function ( sPoint ) {
-    $("#bookList").append('<li>' + sPoint + '</li>');
-  } );
-  $("#bookList").append('</ul></div></div>');
-  $("#bookList").append('<br>');
-}
-
-// var appendToJSON = () => {
-//   // Append to JSON file the current bookInfo object
-//   var bookJSON = JSON.stringify(bookInfo);
-//
-//   // localStorage.setItem ( 'bookstore.json', bookJSON );
-// }
-
-// Creating composite address of array based on selected radio button
-var selectProdType = (dataObj) => {
-  let objArray = []; // Empty array of length 0
-
-  dataObj.forEach ((field) => {
-    if ( field.name === "optRadio") {
-      switch (field.id) { // Copy of Array addresses of length 1+
-        case 'music-radio':       objArray = prodInfo.music; break;
-        case 'book-radio':        objArray = prodInfo.books; break;
-        case 'audioBook-radio':   objArray = prodInfo.audioBooks; break;
-        default:  console.log('ERROR: Invalid type selection for selectProdType().');
-      }
-    }
-  } )
-  return objArray;
 };
 
+// Object with paired values for selecting the div# based on product type
+var divType = {
+  // Type: div ID
+  "Book": "#bookList",
+  "Music": "#musicList",
+  "Audiobook": "#audiobookList"
+};
+
+// jQuery code for appending product to div based on type selected
+var appendToPage = ( prod, type ) => {
+  // prod is prodInfo.type address
+  // type is the type of product selected from the radio buttons
+  var appendStr = "";
+
+  appendStr += '<h3>' + type + ' ' + prod.id + ':</h3>';
+  appendStr += '<ul class="bookwrapper">';
+  appendStr += '<div class="book-id"><li>ID: ' + prod.id + '</li></div>';
+  appendStr += '<div class="book-type"><li>Type: ' + type + '</li></div>';
+  appendStr += '<div class="book-name"><li>Title: ' + prod.title + '</li></div>';
+  appendStr += '<div class="book-author"><li>Author: ' + prod.author + '</li></div>';
+  appendStr += '<div class="book-price"><li>Price: ' + prod.price + '</li></div>';
+  appendStr += '<div class="book-picture"><li><img src="' + prod.imageUrl + '" alt="Book Image"></li></div>';
+  appendStr += '</ul>';
+
+  // Loop through array to get selling points.
+  appendStr += '<div class="book-sellingpoints"><p>Selling Points: </p><ul>';
+  prod.sellingPoints.forEach ( function ( sPoint ) {
+    appendStr += '<li>' + sPoint + '</li>';
+  } );
+  appendStr += '</ul></div>';
+
+  // Appends the appendStr to the specific div
+  $( divType[type] ).append( appendStr );
+}
+
+var parseData = ( dataObj ) => {
+  // var data = $( form ).serializeArray(); // Parsing form info to data obj
+  var formObject = {}; // Initializing object to push onto prodInfo.type array
+  var object = {
+    "array": [], // Empty array of length 0, represents prodInfo.type
+    "type": "" // Empty string placeholder
+  };
+
+  formObject.sellingPoints = []; // Initializing sellingPoints
+
+  dataObj.forEach (( field ) => {
+      if( field.name === "sP-1" || field.name === "sP-2" || field.name === "sP-3"){
+          formObject.sellingPoints.push( field.value )
+      } else if (field.name === "optRadio") {
+        // Creating composite address of array based on selected radio button
+        switch (field.value) {
+          case 'music-radio':       object.array = prodInfo.music;
+                                    object.type = "Music";
+                                    break;
+          case 'book-radio':        object.array = prodInfo.books;
+                                    object.type = "Book";
+                                    break;
+          case 'audiobook-radio':   object.array = prodInfo.audiobooks;
+                                    object.type = "Audiobook";
+                                    break;
+          default:  console.log('ERROR: Invalid type selection for selectProdType().');
+        }
+      } else {
+          formObject[ field.name ] = field.value;
+      }
+  } );
+
+  // Id matches length due to array having empty dataset for 0 position
+  formObject.id = object.array.length;
+
+  object.array.push( formObject ); // Adding book to type specific array
+
+  return object;
+};
+
+var pageFiller = () => {
+  // Building or rebuilding the product bookList
+  // Not efficient for large lists
+  // Uses prodInfo to call appendToPage()
+  // Remember that position 0 of all three arrays is an empty set
+
+  // Refreshing the product type div's and re-adding the hyperlinks
+  $('#bookList').empty();
+  $('#bookList').append('<a href="#book1"><h1>Books</h1></a>');
+
+  $('#audiobookList').empty();
+  $('#audiobookList').append('<a href="#audiobook1"><h1>Audiobooks</h1></a>');
+
+  $('#musicList').empty();
+  $('#musicList').append('<a href="#music1"><h1>Music</h1></a>');
+
+  // Appending the books array
+  for (var i=1; i<prodInfo.books.length; i++){
+    appendToPage ( prodInfo.books[i], "Book");
+  }
+
+  // Appending the audiobooks array
+  for (var i=1; i<prodInfo.audiobooks.length; i++){
+    appendToPage ( prodInfo.audiobooks[i], "Audiobook");
+  }
+
+  // Appending the music array
+  for (var i=1; i<prodInfo.music.length; i++){
+    appendToPage ( prodInfo.music[i], "Music");
+  }
+}
+
+
 // Clicking Submit starts it all off :D
-$( "form" ).on( "submit", ( event ) => {
-    var data = $( event.target ).serializeArray();
-    var formObject = {};
-    let prodObj = [];
+$( "form" ).on( "submit", function ( event ) {
+  var data = $( event.target ).serializeArray(); // Parsing form info to data obj
 
-    event.preventDefault();
+  // Preventing the submit button from submitting the form
+  event.preventDefault();
 
-    prodObj = selectProdType (data);
+  // Parses the data from the form and pushes to prodInfo.type
+  parseData ( data );
 
-    if (prodObj.length !== 0) {
-      formObject.id = prodObj.length;
-      formObject.sellingPoints = [];
+  // Build or rebuild list of products based on prodInfo
+  pageFiller ();
 
-      data.forEach (( field ) => {
-          if( field.name === "sP-1" || field.name === "sP-2" || field.name === "sP-3"){
-              formObject.sellingPoints.push( field.value )
-          } else if (field.name === "optRadio") {
-            // do nothing .. skip this field here
-          } else {
-              formObject[ field.name ] = field.value;
-          }
-      } );
-      prodObj.push( formObject ); // Adding book to type specific array
-      appendToPage( formObject ); // Adding book info to the webpage
-      // appendToJSON( ); // Adding book to JSON file
-      // $('form')[0].reset(); // Resetting form
-    } else {
-      console.log ("ERROR: prodObj has length 0 (ie. optRadio value not setting correctly.)");
-    }
+  // Resetting form
+  $('form')[0].reset();
 });
