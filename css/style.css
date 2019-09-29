@@ -1,28 +1,102 @@
 /* add style! */
-.navigation {
+.nav {
   padding-top: 1em;
 }
-.navigation ul > li {
+/* .nav ul > li {
   display:inline;
   list-style: : none;
-}
+} */
 
-.book {
+/* update .book class to .books class and .music class, based on the updated js */
+.books, .music {
   margin:1em;
   padding: 5%;
   display: inline-block;
 }
 
-.book > ul > div > li {
+.books > ul > div > li, .music > ul > div > li {
 
   list-style:none;
   padding-left:0pt;
 }
 
-#bookwrapper {
+.books ul, .music ul {
+  list-style: none;
+  padding-left: 0pt;
+}
+
+/* consistently size album images */
+.music img {
+  height: 350px;
+}
+
+/* not sure if we need this rule because we have .product-wrapper rule below */
+#bookwrapper, #musicwrapper {
   padding-left:0pt;
 }
+
+/* .product-wrapper may replace #bookwrapper & #musicwrapper?  */
+.product-wrapper {
+  padding-left:0;
+}
+
 .form {
   margin-left:10%;
   margin-right:10%;
+}
+
+
+.form-group.form {
+  padding-bottom: 50px;
+  margin-bottom: 50px;
+}
+.book-bg {
+  /* position: relative; */
+  /* box-sizing: border-box;
+  width: 100%;
+  height: auto; */
+  background-size: 100% 100%;
+  /* position: fixed; */
+  /* background-image: url("https://lostandtaken.com/wp-content/uploads/edd/2016/02/tan-stained-paper-texture-7.jpg"); */
+  background-image: url("https://thumbs.dreamstime.com/b/interior-backdrop-wooden-floor-brick-wall-spotlight-29890786.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  text-align: center;
+  align-content: center;
+
+}
+
+.book-bg2 {
+  background-size: 100%;
+  background-image: url("http://moziru.com/images/hut-clipart-windoor-10.png");
+  background-repeat: no-repeat;
+  text-align: center;
+
+}
+
+* body {
+  font-weight: bold;
+  color: rgb(23, 189, 120);
+}
+
+/* update .bookCard to .booksCard and .musicCard to reflect updated js */
+.booksCard, .musicCard {
+    margin: 30px;
+    padding: 20px 40px 40px;
+    max-width: 500px;
+    text-align: center;
+    background:black;
+    border-bottom: 4px solid #ccc;
+    border-radius: 6px;
+}
+
+/* style the product type radio buttons */
+#product-type-radio-group {
+  display: block;
+  text-align: left;
+}
+
+#product-type-radio-group label {
+  display: block;
+  text-align: left;
 }
